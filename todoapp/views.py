@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from . models import Task
 from . forms import TodoForms
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView,DeleteView
 # Create your views here.
+from .models import Task
+
 
 class Tasklistview(ListView):
     model = Task
@@ -55,4 +56,4 @@ def update(request,id):
     if form.is_valid():
         form.save()
         return redirect('/')
-    return render(request,'home.html',{"form": form,'task1':task1})
+    return render(request,'update.html',{"form": form,'task1': task1})
